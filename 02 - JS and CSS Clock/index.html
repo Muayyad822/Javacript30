@@ -16,6 +16,7 @@
         <div class="hand second-hand"></div>
       </div>
     </div>
+    <div class="digital-clock"></div>
 
 
 
@@ -25,7 +26,7 @@
     const secondHand = document.querySelector(".second-hand")
     const minHand = document.querySelector(".min-hand")
     const hourHand = document.querySelector(".hour-hand")
-    function setDate(){
+    function displayAnalogClock(){
       const now = new Date;
       // seconds
       const seconds = now.getSeconds()
@@ -43,7 +44,25 @@
 
     }
 
-    setInterval(setDate, 1000)
+    setInterval(displayAnalogClock, 1000)
+
+    
+
+    function displayDigitalClock(){
+    const now = new Date();
+    let hours = now.getHours();
+    let meridian = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12 || 12;
+    hours = hours.toString().padStart(2,0);
+    let minutes = now.getMinutes().toString().padStart(2,0);
+    let seconds = now.getSeconds().toString().padStart(2,0);
+
+    let clock = `${hours}:${minutes}:${seconds} ${meridian}`;
+    let digitalClock = document.querySelector(".digital-clock")
+    digitalClock.textContent = clock; 
+    }
+
+    setInterval(displayDigitalClock, 1000)
 
   </script>
 </body>
